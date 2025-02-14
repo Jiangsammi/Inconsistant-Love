@@ -1,0 +1,120 @@
+/* Apply a standard margin around the body content */
+body {
+    background-color: pink;
+    margin: 16px;
+    height: calc(100vh - 32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Playlist tab at the top right */
+.playlist-tab {
+    color: rgb(0, 0, 0);
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    width: 150px;
+    position: fixed;
+    top: 0px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 10;
+}
+
+/* Move the "More" button to the left side and adjust top position */
+.playlist-tab:nth-of-type(2) {
+    left: 0;
+    top: 0px;
+}
+
+/* Move the "Playlist" tab to the right side with equal margin */
+.playlist-tab:nth-of-type(1) {
+    right: 0;
+    top: 0px;
+}
+
+/* Grid container for the 10x10 layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+/* Styling for the love-text */
+.love-text, .love-text-bottom-right {
+    font-family: 'Miss Fajardose', sans-serif;
+    font-size: 200px;
+    position: absolute;
+    display: inline-block;
+    opacity: 0;
+    animation: typing 3s steps(4) 1s forwards, scale-up 2s ease-out 1s forwards, fade-in 2s ease-out 1s forwards;
+    animation-fill-mode: forwards;
+    z-index: 5; /* Ensure love-text is on top of the playlist tabs */
+}
+
+.love-text {
+    bottom: 0;
+    right: 0;
+}
+
+.love-text-bottom-right {
+    bottom: 10px;
+    right: 10px;
+    font-size: 400px;
+    animation: fade-in 2s ease-out 3s forwards;
+}
+
+/* Zoom effect when hovering over the word "Love" */
+.love-text:hover {
+    transform: scale(2); /* Zoom effect */
+    transform-origin: center center; /* Zoom effect from the center */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Additional zoom effect for the second "Love" */
+.love-text-bottom-right:hover {
+    transform: scale(2); /* Zoom effect */
+    transform-origin: center center; /* Zoom effect from the center */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Animation for typing the word */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 20ch;
+    }
+}
+
+/* Scale up the word */
+@keyframes scale-up {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Fade in the word */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
