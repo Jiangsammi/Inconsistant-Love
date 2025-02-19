@@ -6,17 +6,17 @@
     <title>Inconsistent Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Miss+Fajardose&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home2.css">
+
 </head>
 <body>
-    <!-- Playlist button -->
     <a href="Love-Letter.html" class="playlist-btn">
         <div class="playlist-tab">
             Write a Letter
         </div>
     </a>
 
-    <!-- More tab to open comment section -->
+    <!-- More tab for opening the comment section -->
     <div class="more-tab">More</div>
 
     <!-- Comment Section (initially hidden off-screen to the left) -->
@@ -25,8 +25,8 @@
         <button class="back-button">Back</button>
 
         <h2>Leave a Comment</h2>
-        <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
-        <button id="submit-comment">Submit</button>
+        <textarea placeholder="Write your comment here..."></textarea>
+        <button>Submit</button>
 
         <!-- Recent comments will be displayed here -->
         <div class="recent-comments" id="recent-comments"></div>
@@ -49,9 +49,6 @@
         const moreButton = document.querySelector('.more-tab');
         const commentSection = document.querySelector('.comment-section');
         const backButton = document.querySelector('.back-button');
-        const submitButton = document.querySelector('#submit-comment');
-        const commentText = document.querySelector('#comment-text');
-        const recentComments = document.querySelector('#recent-comments');
 
         // Toggle comment section visibility on "More" button click
         moreButton.addEventListener('click', () => {
@@ -63,29 +60,35 @@
             commentSection.classList.remove('open'); // Remove 'open' class to slide it back out
         });
 
-        // Submit comment when the "Submit" button is clicked
-        submitButton.addEventListener('click', () => {
-            const comment = commentText.value.trim(); // Get the comment text
+        // Zoom effect toggle
+        const loveText = document.querySelector('.love-text');
+        const loveTextBottomRight = document.querySelector('.love-text-bottom-right');
 
-            if (comment) {
-                // Create a new div to display the comment
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-                
-                // Add the comment text
-                commentDiv.innerHTML = `
-                    <p>${comment}</p>
-                    <p class="timestamp">${new Date().toLocaleString()}</p>
-                `;
+        // URL to navigate to
+        const redirectUrl = 'sadletter.html'; // Change this to the page you want to go to
 
-                // Append the new comment to the recent comments section
-                recentComments.appendChild(commentDiv);
+        // Function to toggle zoom effect
+        function toggleZoomEffect() {
+            loveText.classList.toggle('zoomed');
+            loveTextBottomRight.classList.toggle('zoomed');
+        }
 
-                // Clear the textarea after submission
-                commentText.value = '';
-            } else {
-                alert('Please write a comment before submitting!');
+        // Handle redirection when zoomed-in "Love" is clicked
+        function handleClickRedirect(event) {
+            if (loveText.classList.contains('zoomed') || loveTextBottomRight.classList.contains('zoomed')) {
+                window.location.href = redirectUrl; // Redirect to the page
             }
+        }
+
+        // Add click event listeners for zooming and redirection
+        loveText.addEventListener('click', () => {
+            toggleZoomEffect();
+            handleClickRedirect();
+        });
+
+        loveTextBottomRight.addEventListener('click', () => {
+            toggleZoomEffect();
+            handleClickRedirect();
         });
     </script>
 </body>
